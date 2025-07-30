@@ -1,3 +1,3 @@
-# Tech Tip Tuesday with Tony Bourke
+# Tech Talk Tuesday with Tony Bourke
 
-In this Tech Tip Tuesday, I talk about configuring MLAG on Arista EOS
+In this Tech Talk Tuesday, I talk about configuring MLAG on Arista EOS
