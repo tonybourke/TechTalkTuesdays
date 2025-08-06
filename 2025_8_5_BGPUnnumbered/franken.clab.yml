@@ -1,0 +1,37 @@
+---
+name: franken
+prefix: ""
+
+mgmt:
+  network: mgmt
+  ipv6-subnet:
+  ipv4-subnet: 172.20.20.0/24
+
+
+topology:
+  kinds:
+    ceos:
+      env:
+        CLAB_MGMT_VRF: MGMT
+  nodes:
+    R1:
+      kind: ceos
+      image: ceos:4.33.2F
+      mgmt-ipv4: 172.20.20.11
+    R2:
+      kind: cisco_n9kv
+      image: vrnetlab/cisco_n9kv:9300-9.3.6
+      mgmt-ipv4: 172.20.20.12
+    R3:
+      kind: juniper_cjunosevolved
+      image: cjunosevolved:25.2R1.8-EVO
+      mgmt-ipv4: 172.20.20.13
+      env:
+        # To start the BT flavor, change "BX" to "BT" below
+        CPTX_COSIM: "BX"
+
+
+  links:
+    - endpoints: ["R1:eth1", "R2:eth1"]
+    - endpoints: ["R2:eth2", "R3:eth4"]
+    - endpoints: ["R3:eth5", "R1:eth2"]
