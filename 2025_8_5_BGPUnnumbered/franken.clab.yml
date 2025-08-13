@@ -29,9 +29,14 @@ topology:
       env:
         # To start the BT flavor, change "BX" to "BT" below
         CPTX_COSIM: "BX"
-
+    R4:
+      kind: arista_ceos
+      image: ceos:4.33.2F
+      mgmt-ipv4: 172.20.20.14
 
   links:
     - endpoints: ["R1:eth1", "R2:eth1"]
     - endpoints: ["R2:eth2", "R3:eth4"]
     - endpoints: ["R3:eth5", "R1:eth2"]
+    - endpoints: ["R4:eth1", "R1:eth3"]
+
