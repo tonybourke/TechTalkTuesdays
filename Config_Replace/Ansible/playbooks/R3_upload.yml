@@ -1,0 +1,8 @@
+- name: Deploy config to R3 (Juniper Junos Evolved)
+  hosts: R3
+  tasks:
+    - name: Upload config for R3
+      junipernetworks.junos.junos_config:
+        src: ../configs/R3.cfg
+        src_format: text
+        update: update

@@ -1,0 +1,35 @@
+---
+- name: Vars for all
+  hosts: all
+- name: Backup config for R1/R4 (cEOS)
+  hosts: R1, R4
+  tasks:
+    - name: Backup config
+      arista.eos.eos_config:
+        backup: true
+        backup_options:
+          filename: "{{ inventory_hostname }}-{{ backup_type }}.cfg"
+          dir_path: backups/
+
+- name: Backup config for R2 (NXOS)
+  hosts: R2
+  tasks:
+    - name: Backup config
+      cisco.nxos.nxos_config:
+        backup: true
+        backup_options:
+          filename: "{{ inventory_hostname }}-{{ backup_type }}.cfg"
+          dir_path: backups/
+
+- name: Backup config for R3 (cJunos Evolved)
+  hosts: R3
+  vars:
+    backup_type: BGP_Unnumbered
+  tasks:
+    - name: Backup config
+      junipernetworks.junos.junos_config:
+        backup: true
+        backup_options:
+          filename: "{{ inventory_hostname }}-{{ backup_type }}.cfg"
+          dir_path: backups/
+          backup_format: text

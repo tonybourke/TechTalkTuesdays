@@ -1,0 +1,8 @@
+---
+- name: Deploy config to R1 (Arista EOS)
+  hosts: R1
+  tasks:
+    - name: Upload config for R1
+      arista.eos.eos_config:
+        src: ../configs/R1.cfg
+        replace: config

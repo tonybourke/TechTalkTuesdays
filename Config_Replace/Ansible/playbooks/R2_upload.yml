@@ -1,0 +1,11 @@
+- name: Deploy config to R2 (Cisco Nexus)
+  hosts: R2
+  tasks:
+    - name: Copy from server to device
+      cisco.nxos.nxos_file_copy:
+        local_file: configs/R2.cfg
+        remote_file: replace_with_me.txt
+    - name: Replace config
+      cisco.nxos.nxos_config:
+        replace: config
+        replace_src: replace_with_me.txt
